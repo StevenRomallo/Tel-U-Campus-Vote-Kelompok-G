@@ -335,6 +335,7 @@ Kumpulkan tautan repository, README dengan nama/NIM kelompok, dan video aktual. 
 
 ## Referensi dan lisensi aset
 
+Pengujian otomatisasi Jenkins CI/CD menggunakan GitHub Webhook.
 - [Outfit — Google Fonts](https://github.com/google/fonts/tree/main/ofl/outfit), [Plus Jakarta Sans — Google Fonts](https://github.com/google/fonts/tree/main/ofl/plusjakartasans). File OFL disertakan.
 - [Jenkins GitHub plugin](https://plugins.jenkins.io/github/), [Declarative Pipeline](https://www.jenkins.io/doc/book/pipeline/syntax/).
 - [Docker Bind Mount](https://docs.docker.com/engine/storage/bind-mounts/), [ngrok HTTP endpoints](https://ngrok.com/docs/http/).
