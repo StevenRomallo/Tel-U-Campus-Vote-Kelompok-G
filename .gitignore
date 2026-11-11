@@ -1,0 +1,10 @@
+data/
+__pycache__/
+*.py[cod]
+.env
+.env.next
+.venv/
+*.log
+*.zip
+.DS_Store
+.openai/

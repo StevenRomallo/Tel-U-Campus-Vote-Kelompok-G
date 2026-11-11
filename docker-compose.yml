@@ -1,0 +1,58 @@
+name: telu-campus-vote
+services:
+  backend:
+    image: telu-campus-vote-backend:local
+    build:
+      context: .
+      dockerfile: Dockerfile
+    init: true
+    restart: unless-stopped
+    environment:
+      ENABLE_DEMO_TOOLS: ${ENABLE_DEMO_TOOLS:-false}
+      NIM_HMAC_SECRET: ${NIM_HMAC_SECRET:?Jalankan python tools/setup_secrets.py terlebih dahulu}
+      LOGIN_PASSWORD: ${LOGIN_PASSWORD:-12345678}
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+    volumes:
+      - polling-db-data:/var/lib/backend_data
+    networks:
+      - app-net
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 6
+      start_period: 5s
+  frontend:
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${APP_PORT:-8097}:80"
+    volumes:
+      - type: bind
+        source: ${FRONTEND_HOST_PATH:-./frontend}
+        target: /usr/share/nginx/html
+        read_only: true
+      - type: bind
+        source: ${NGINX_HOST_PATH:-./nginx/default.conf}
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - app-net
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+networks:
+  app-net:
+    name: app-net
+    driver: bridge
+volumes:
+  polling-db-data:
+    name: polling-db-data

@@ -1,0 +1,47 @@
+name: telu-jenkins
+services:
+  init-deploy:
+    image: telu-jenkins:2.580.2
+    build: .
+    user: '0:0'
+    entrypoint: ['chown', '1000:1000', '/deploy']
+    network_mode: none
+    volumes:
+      - telu-jenkins-deploy:/deploy
+    restart: 'no'
+  controller:
+    image: telu-jenkins:2.580.2
+    build: .
+    container_name: telu-jenkins
+    init: true
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:8082:8080'
+    environment:
+      JAVA_OPTS: '-Xms256m -Xmx1024m'
+      TELU_DEPLOY_DIR: '${TELU_DEPLOY_DIR:?Jalankan python bootstrap.py dahulu}'
+    volumes:
+      - telu-jenkins-home:/var/jenkins_home
+      - type: volume
+        source: telu-jenkins-deploy
+        target: '${TELU_DEPLOY_DIR:?Jalankan python bootstrap.py dahulu}'
+    networks:
+      - app-net
+    depends_on:
+      init-deploy:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ['CMD', 'curl', '--fail', '--silent', 'http://127.0.0.1:8080/login']
+      interval: 15s
+      timeout: 5s
+      retries: 12
+      start_period: 90s
+networks:
+  app-net:
+    external: true
+    name: app-net
+volumes:
+  telu-jenkins-home:
+    name: telu-jenkins-home
+  telu-jenkins-deploy:
+    name: telu-jenkins-deploy

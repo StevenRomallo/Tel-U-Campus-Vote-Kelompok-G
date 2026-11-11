@@ -1,0 +1,13 @@
+.git
+.env
+.env.next
+data
+__pycache__
+**/__pycache__
+tests
+docs
+frontend
+tools
+jenkins
+*.zip
+README.md

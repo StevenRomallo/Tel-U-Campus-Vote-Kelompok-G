@@ -1,0 +1,10 @@
+# Optional. Enable only after explicitly authorizing access to the host Docker daemon.
+# This grants the Jenkins service broad control over containers on the computer.
+services:
+  controller:
+    group_add:
+      - '${DOCKER_SOCKET_GID:-0}'
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock

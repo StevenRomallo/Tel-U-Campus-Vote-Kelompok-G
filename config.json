@@ -1,0 +1,136 @@
+{
+  "title": "Pemilihan Ketua & Wakil BEM",
+  "period": "Periode 2026 / 2027",
+  "description": "Satu suara, banyak kemungkinan. Pilih gagasan yang ingin kamu bawa untuk kampus kita.",
+  "timezone": "Asia/Jakarta",
+  "cohorts": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "catalog_notice": "Pilihan fakultas dan program studi merupakan contoh untuk Telkom University Bandung, bukan daftar resmi atau lengkap.",
+  "faculties": [
+    {
+      "name": "Teknik Elektro",
+      "programs": [
+        "S1 Teknik Telekomunikasi",
+        "S1 Teknik Elektro",
+        "S1 Teknik Komputer"
+      ]
+    },
+    {
+      "name": "Informatika",
+      "programs": [
+        "S1 Informatika",
+        "S1 Teknologi Informasi",
+        "S1 Rekayasa Perangkat Lunak",
+        "S1 Sains Data"
+      ]
+    },
+    {
+      "name": "Rekayasa Industri",
+      "programs": [
+        "S1 Teknik Industri",
+        "S1 Sistem Informasi",
+        "S1 Teknik Logistik"
+      ]
+    },
+    {
+      "name": "Ekonomi dan Bisnis",
+      "programs": [
+        "S1 Manajemen",
+        "S1 Akuntansi"
+      ]
+    },
+    {
+      "name": "Komunikasi dan Ilmu Sosial",
+      "programs": [
+        "S1 Ilmu Komunikasi",
+        "S1 Administrasi Bisnis"
+      ]
+    },
+    {
+      "name": "Industri Kreatif",
+      "programs": [
+        "S1 Desain Komunikasi Visual",
+        "S1 Desain Produk",
+        "S1 Desain Interior"
+      ]
+    },
+    {
+      "name": "Ilmu Terapan",
+      "programs": [
+        "D3 Sistem Informasi",
+        "D3 Teknik Telekomunikasi",
+        "D4 Teknologi Rekayasa Multimedia"
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "option": "A",
+      "number": "01",
+      "names": "Fajar Hafiz & M Dzikran",
+      "roles": "Fajar Hafiz · M Dzikran (Zico)",
+      "tagline": "Bergerak bersama, berdampak nyata.",
+      "vision": "Kampus yang terbuka, kolaboratif, dan memberi ruang bagi setiap aspirasi.",
+      "missions": [
+        "Forum aspirasi mahasiswa setiap bulan",
+        "Kolaborasi lintas fakultas & komunitas",
+        "Program pengembangan karier yang inklusif"
+      ],
+      "color": "#bc1e32",
+      "people": [
+        {
+          "name": "Fajar Hafiz",
+          "role": "Calon Ketua BEM"
+        },
+        {
+          "name": "M Dzikran (Zico)",
+          "role": "Calon Wakil Ketua BEM"
+        }
+      ],
+      "assets": {
+        "pair": "assets/candidates/pasangan-01-transparan.png",
+        "chair": "assets/candidates/fajar-hafiz.png",
+        "deputy": "assets/candidates/m-dzikran.png",
+        "poster": "assets/candidates/poster-pasangan-01.png"
+      }
+    },
+    {
+      "option": "B",
+      "number": "02",
+      "names": "M Ridho “Idoy” & M. Fauzan",
+      "roles": "M Ridho “Idoy” · M. Fauzan",
+      "tagline": "Ide baru untuk langkah yang berarti.",
+      "vision": "Ekosistem mahasiswa yang kreatif, peduli, dan berdaya melalui inovasi.",
+      "missions": [
+        "Inkubasi ide dan proyek mahasiswa",
+        "Gerakan kampus ramah lingkungan",
+        "Transparansi program & anggaran organisasi"
+      ],
+      "color": "#305c84",
+      "people": [
+        {
+          "name": "M Ridho “Idoy”",
+          "role": "Calon Ketua BEM"
+        },
+        {
+          "name": "M. Fauzan",
+          "role": "Calon Wakil Ketua BEM"
+        }
+      ],
+      "assets": {
+        "pair": "assets/candidates/pasangan-02-transparan.png",
+        "chair": "assets/candidates/m-ridho-idoy.png",
+        "deputy": "assets/candidates/m-fauzan.png",
+        "poster": "assets/candidates/poster-pasangan-02.png"
+      }
+    }
+  ],
+  "location": "Telkom University Bandung"
+}
