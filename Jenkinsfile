@@ -9,7 +9,7 @@ pipeline {
     }
     triggers { githubPush() }
     parameters {
-        string(name: 'DEPLOY_DIR', defaultValue: '/srv/telu-campus-vote', description: 'Absolute path shared identically by Jenkins agent and Docker host')
+        string(name: 'DEPLOY_DIR', defaultValue: '/var/lib/docker/volumes/telu-jenkins-deploy/_data', description: 'Absolute path shared identically by Jenkins agent and Docker host')
         string(name: 'APP_PORT', defaultValue: '8097', description: 'Frontend port on Docker host')
         string(name: 'HEALTH_BASE_URL', defaultValue: 'http://frontend:80', description: 'Jenkins container on app-net; use http://127.0.0.1:8097 for a host agent')
         booleanParam(name: 'ENABLE_DEMO_TOOLS', defaultValue: false, description: 'Allow explicit demo seed into empty storage')

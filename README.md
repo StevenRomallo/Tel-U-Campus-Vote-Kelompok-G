@@ -272,7 +272,7 @@ Instance khusus proyek tersedia melalui konfigurasi di [jenkins/README.md](jenki
 ```mermaid
 flowchart LR
   P[git push main] --> G[GitHub webhook]
-  G --> T[ngrok HTTPS ke Jenkins 8080]
+  G --> T[ngrok HTTPS ke Jenkins 8082]
   T --> C[Checkout]
   C --> S[Syntax Check + tests]
   S --> B[Build Image]
@@ -299,7 +299,7 @@ Jangan membuat ulang key di pipeline. Environment Credentials disamarkan oleh Je
 1. Push folder proyek ke repository kelompok dengan branch `main` dan Jenkinsfile di root.
 2. Buat Pipeline script from SCM → Git, URL HTTPS repository, credential GitHub PAT, branch `*/main`, script path `Jenkinsfile`.
 3. Isi Credentials di atas. Jalankan build awal agar trigger/parameter terdaftar.
-4. Jalankan `ngrok http 8080` pada host yang dapat mengakses Jenkins.
+4. Jalankan `ngrok http 8082` pada host yang dapat mengakses Jenkins khusus proyek ini.
 5. GitHub → Settings → Webhooks: Payload URL `https://ALAMAT-NGROK/github-webhook/`, content type JSON, push event, Active.
 6. Pastikan GitHub hook trigger for GITScm polling aktif. Ubah kode dan push main; periksa Recent Deliveries dan lima stage Jenkins.
 
@@ -308,8 +308,8 @@ PAT classic mengikuti PDF: expiry 30/90 hari, izin `repo` dan `admin:repo_hook`.
 ### Folder deployment dan Bind Mount
 
 - Workspace Jenkins adalah tempat checkout, tests, dan build.
-- `DEPLOY_DIR` default `/srv/telu-campus-vote` adalah folder persisten, berbeda dari workspace.
-- Jika agent berada dalam kontainer Linux, mount folder host `/srv/telu-campus-vote` ke **path identik** dalam agent dan beri izin tulis. Agent memerlukan Docker CLI/Compose dan akses socket daemon yang sama.
+- `DEPLOY_DIR` default `/var/lib/docker/volumes/telu-jenkins-deploy/_data` adalah folder persisten, berbeda dari workspace, untuk Jenkins khusus proyek ini.
+- Jika agent berada dalam kontainer Linux, mount folder host deployment ke **path identik** dalam agent dan beri izin tulis. Agent memerlukan Docker CLI/Compose dan akses socket daemon yang sama.
 - Bind Mount diselesaikan pada host daemon, bukan filesystem client Jenkins. Jangan menunjuk folder yang hanya ada dalam kontainer agent.
 - Helper menyalin aset frontend/Nginx dan menulis `.env` runtime deployment secara atomik. File itu berisi secret runtime sehingga harus tetap privat dan tidak masuk source/ZIP.
 - Untuk agent host Linux, set Health URL `http://127.0.0.1:8097`. Untuk agent dalam kontainer pada `app-net`, gunakan `http://frontend:80`.
@@ -317,7 +317,7 @@ PAT classic mengikuti PDF: expiry 30/90 hari, izin `repo` dan `admin:repo_hook`.
 
 Build memakai image lokal pada daemon yang sama; deployment memakai `--no-build --force-recreate --wait` tanpa menghapus volume. Tidak ada automatic rollback; kegagalan health check menghentikan pipeline. Pada HTTPS, set `COOKIE_SECURE=true` dan gunakan konfigurasi proxy TLS yang benar.
 
-**Integrasi GitHub/PAT/ngrok/Jenkins aktual perlu akun dan job kelompok; konfigurasi tersedia, bukan diklaim sudah terhubung.**
+**Repositori GitHub, job Jenkins, dan ID credential telah disiapkan; build/deployment serta webhook ngrok masih perlu diverifikasi.**
 
 ## Panduan demo 5–8 menit
 

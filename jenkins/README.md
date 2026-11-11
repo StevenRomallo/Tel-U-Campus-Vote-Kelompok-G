@@ -32,7 +32,7 @@ Bootstrap hanya membuat/memakai volume deployment milik instance baru dan menuli
 Ikuti README utama untuk credential `github-pat`, `telu-nim-hmac`, `telu-admin-token`, dan `telu-voter-password`. Pertahankan secret NIM yang sama dengan deployment aplikasi yang sedang dipakai.
 
 - Repository: URL HTTPS repository kelompok, branch `*/main`, script path `Jenkinsfile`.
-- **DEPLOY_DIR:** isi dengan path yang dicetak `python bootstrap.py`, yaitu `/var/lib/docker/volumes/telu-jenkins-deploy/_data` pada daemon lokal yang diuji. Jangan memakai default `/srv/telu-campus-vote` pada instalasi ini.
+- **DEPLOY_DIR:** nilai bawaan Jenkinsfile sudah sesuai path yang dicetak `python bootstrap.py`, yaitu `/var/lib/docker/volumes/telu-jenkins-deploy/_data` pada daemon lokal yang diuji. Jika instalasi Docker berbeda, gunakan path yang dicetak bootstrap.
 - APP_PORT: `8097`.
 - HEALTH_BASE_URL: `http://frontend:80` (controller terhubung ke `app-net`).
 - ENABLE_DEMO_TOOLS: `false` untuk penggunaan biasa.
